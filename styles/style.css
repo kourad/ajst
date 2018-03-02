@@ -1,0 +1,27 @@
+
+div[data-ice=constructorDetails] div[data-ice=description] > p:first-child, 
+div[data-ice=memberDetails] div[data-ice=description] > p:first-child, 
+div[data-ice=methodDetails] div[data-ice=description] > p:first-child {
+    font-size: 1.2em;
+    font-style: italic;
+    color: darkgrey;
+}
+
+div[data-ice=description] > table {
+    border: 1px solid #ddd;
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+div[data-ice=description] > table thead tr{
+    background-color: #F0F0F0;
+}
+div[data-ice=description] > table thead td{
+    padding: 4px;
+}
+
+div[data-ice=description] > table td {
+    padding: 4px;
+    border: solid 1px #ddd;
+}

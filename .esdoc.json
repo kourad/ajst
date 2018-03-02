@@ -1,0 +1,24 @@
+{
+    "source": "./core-tester",
+    "destination": "./docs",
+    "plugins": [
+      {"name": "esdoc-standard-plugin",
+        "option": {
+          "unexportedIdentifier": {"enable": true},
+          "brand": {
+            "title": "AJSTT (Another JavaScript Testing Tool)"
+          },
+          "manual":{
+            "index": "./README.md",
+            "asset": "./manual/asset",
+            "globalIndex": true,
+            "files": [
+              "./manual/overview.md"
+            ]
+          }
+        }
+      },
+      {"name": "esdoc-node"},
+      {"name": "esdoc-inject-style-plugin", "option": {"enable": true, "styles": ["./styles/style.css"]}}
+    ]
+  }
