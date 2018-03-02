@@ -16,12 +16,15 @@
   "license": "ISC",
   "bin": "./index.js",
   "dependencies": {
-    "ajv": "^6.1.1",
-    "esdoc-node": "^1.0.3"
+    "ajv": "^6.1.1"
   },
   "devDependencies": {
     "esdoc": "^1.0.4",
     "esdoc-inject-style-plugin": "^1.0.0",
     "esdoc-standard-plugin": "^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kourad/ajstt.git"
   }
 }

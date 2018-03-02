@@ -28,16 +28,17 @@ module.exports = class Test
      * 
      * @param {string} name 
      * @param {Function} callback 
-     * @param {boolean} capture 
+     * @param {boolean} async 
+     * 
+     * @todo comprobar el rando de repeats...
      */
-    constructor( name, callback, capture = false )
+    constructor( name, callback, async = false, repeats = 1 )
     {
         this.name = name;
-        this.callback = callback
-        this.$capture = capture
-        this.$tests = [];
-        //this.$expected = null;
-        //this.$measure = null;
+        this._callback = callback
+        this._async = async
+        this._tests = [];
+        this.repeats = repeats;
     }
 
     _resolveMark()
@@ -57,14 +58,14 @@ module.exports = class Test
 
     print()
     {
-        console.log(`${this.name}: [${this.$tests[0].result}] (${this.$tests[0].duration}ms) [${this.$tests[0].error !== null ? this.$tests[0].error.name : ''}]`)
+        console.log(`${this.name}: [${this._tests[0].result}] (${this._tests[0].duration}ms) [${this._tests[0].error !== null ? this._tests[0].error.name : ''}]`)
     }
 
 
     async execute()
     {
-        for( let i = 1; i <= 3; i++)
-            if( !this.$capture  )
+        for( let i = 1; i <= this.repeats; i++)
+            if( !this._async  )
                 this._executeSync(i)
             else
                 await this._executeAsync()
@@ -77,30 +78,26 @@ module.exports = class Test
  
     _executeSync(i)
     {
-        //return new Promise( (resolve, reject) => 
-        //{
-            performance.mark(this.name+'_start');
-            let data = {retry: i};
-            try
-            {
-                assert.EqualSchema = $EqualSchemaSync.bind(this, this, assert)
-                assert.notEqualSchema = $notEqualSchemaSync.bind(this, this, assert)
-                this.callback(assert);
-                data.result = 'SUCCESS'
-            }
-            catch(e)
-            {
-                if( e.code === 'ERR_ASSERTION' )
-                    data.result = 'FAIL'
-                else
-                    data.result = 'ERROR'
-                
-                data.error = new resultError(e)
-            }
-            data.duration = this._resolveMark();
-            this.$tests.push( new resultEntry(data) );
-           // resolve();
-       // } )
+        performance.mark(this.name+'_start');
+        let data = {retry: i};
+        try
+        {
+            assert.EqualSchema = $EqualSchemaSync.bind(this, this, assert)
+            assert.notEqualSchema = $notEqualSchemaSync.bind(this, this, assert)
+            this._callback(assert);
+            data.result = 'SUCCESS'
+        }
+        catch(e)
+        {
+            if( e.code === 'ERR_ASSERTION' )
+                data.result = 'FAIL'
+            else
+                data.result = 'ERROR'
+            
+            data.error = new resultError(e)
+        }
+        data.duration = this._resolveMark();
+        this._tests.push( new resultEntry(data) );
     }
 
 
@@ -117,7 +114,7 @@ module.exports = class Test
             // hacer que done encapsule todos los metodos de assert
             let done = $checker.bind(this,this, resolve, reject)
             
-            this.callback(done)
+            this._callback(done)
 
         })
     }
