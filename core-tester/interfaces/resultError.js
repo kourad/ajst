@@ -77,7 +77,7 @@ module.exports =  class resultError
          * *notDeepStrictEqual* | Se esperaba que la comparacion en profundidad estricta fallara | assert
          * *throws* | Se esperaba que el test lanzara un error | assert
          * *doesNotThrow* | Se esperaba que el test no lanzara un error | assert
-         * *EqualSchema* | Se comparo el resultado contra un schema de AJV | {@link $EqualSchemaSync} 
+         * *equalSchema* | Se comparo el resultado contra un schema de AJV | {@link $EqualSchemaSync} 
          * *notEqualSchema* | Se comparo el resultado contra un schema de AJV | {@link $notEqualSchemaSync} 
          * 
          * @type {string} 

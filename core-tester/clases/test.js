@@ -30,7 +30,7 @@ module.exports = class Test
      * @param {Function} callback 
      * @param {boolean} async 
      * 
-     * @todo comprobar el rando de repeats...
+     * @todo comprobar el rango de repeats...
      */
     constructor( name, callback, async = false, repeats = 1 )
     {
@@ -82,7 +82,7 @@ module.exports = class Test
         let data = {retry: i};
         try
         {
-            assert.EqualSchema = $EqualSchemaSync.bind(this, this, assert)
+            assert.equalSchema = $EqualSchemaSync.bind(this, this, assert)
             assert.notEqualSchema = $notEqualSchemaSync.bind(this, this, assert)
             this._callback(assert);
             data.result = 'SUCCESS'
