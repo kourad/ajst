@@ -4,6 +4,9 @@ Nombre provisional bajo construccion...
 
 ## How to Use
 
+> Tener en cuenta que aun no es capaz de comprobar metodos que devuelvan promesas o callbacks
+
+
 Los test deben colocarse en una carpeta llamada **uni-test**
 
 Ejemplo de un test sencillo
