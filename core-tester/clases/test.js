@@ -26,9 +26,10 @@ module.exports = class Test
      * Este metodo crea un nuevo test y lo ejecuta segun las opciones 
      * dadas
      * 
-     * @param {string} name 
-     * @param {Function} callback 
-     * @param {boolean} async 
+     * @param {string} name - Nombre del test
+     * @param {Function} callback - Test a realizar
+     * @param {boolean} async=false - Tipo de test que vamos a realizar (sincrono o asincrono)
+     * @param {number} repeats=1 - Numero de repeticiones del test
      * 
      * @todo comprobar el rango de repeats...
      */

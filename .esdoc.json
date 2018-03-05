@@ -6,7 +6,7 @@
         "option": {
           "unexportedIdentifier": {"enable": true},
           "brand": {
-            "title": "AJSTT (Another JavaScript Testing Tool)"
+            "title": "TrailCode (Another JavaScript Testing Tool)"
           },
           "manual":{
             "index": "./README.md",

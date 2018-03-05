@@ -1,4 +1,4 @@
-# AJST (Another JavaScript testing Tool)
+# TrailCode (Another JavaScript Testing Tool)
 
 Nombre provisional bajo construccion...
 
@@ -45,5 +45,6 @@ El callback del test recibe como parametro una instancia del modulo assert defin
 Una vez definidos los test hay que correr node con el comando: 
 
 ```
-node index.js
+$ npm install
+$ node index.js
 ```

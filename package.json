@@ -20,11 +20,12 @@
   },
   "devDependencies": {
     "esdoc": "^1.0.4",
+    "esdoc-node": "^1.0.3",
     "esdoc-inject-style-plugin": "^1.0.0",
     "esdoc-standard-plugin": "^1.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kourad/ajst.git"
+    "url": "https://github.com/kourad/trailcode.git"
   }
 }
