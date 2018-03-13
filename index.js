@@ -1,7 +1,7 @@
-require( './core-tester/checker.js') 
-require( './core-tester/launcher.js' )
-const loaderModule = require('./core-tester/loader.js')
 
+//require( './core-tester/checker.js') 
+
+const TrailCode = require('./core-tester/clases/trailcode.js') 
 const path = require('path')
 
 
@@ -13,7 +13,5 @@ let config = {
 
 module.exports = (() => 
 {
-    
-    loaderModule.$loader( config.base_dir )
-    $execute()
+    new TrailCode(config.base_dir)   
 })()

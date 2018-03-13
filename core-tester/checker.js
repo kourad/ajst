@@ -1,21 +1,22 @@
 const AJV = require('ajv')
 let ajv = new AJV()
 
-exports.$getType = ( obj ) =>
+function $getType( obj )
 {
     if( obj === void 0 )
         return 'undefined'
     return {}.toString.call(obj).match(/\s([a-z|A-Z]+)/)[1].toLowerCase();
 }
+exports.$getType = $getType
 
 
-
-exports.$checker = (context,resolve, reject, response, expected) => 
+function $checker(context,resolve, reject, response, expected)
 {
     context._resolveMark()
     context.$result = 'SUCCESS'
     resolve()
 }
+exports.$checker = $checker
 
 function $EqualSchemaSync(context, assert, data, schema, message)
 {
