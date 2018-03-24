@@ -1,7 +1,8 @@
 
 div[data-ice=constructorDetails] div[data-ice=description] > p:first-child, 
 div[data-ice=memberDetails] div[data-ice=description] > p:first-child, 
-div[data-ice=methodDetails] div[data-ice=description] > p:first-child {
+div[data-ice=methodDetails] div[data-ice=description] > p:first-child,
+.self-detail div[data-ice=description] > p:first-child {
     font-size: 1.2em;
     font-style: italic;
     color: darkgrey;
@@ -24,4 +25,22 @@ div[data-ice=description] > table thead td{
 div[data-ice=description] > table td {
     padding: 4px;
     border: solid 1px #ddd;
+}
+
+.since {
+    padding-right: 5px;
+}
+
+.inner-link-active .since {
+    color: white;
+}
+
+.identifiers-wrap {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.identifiers-wrap > div:first-child {
+    width: 100%;
 }

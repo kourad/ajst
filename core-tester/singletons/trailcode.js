@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const Group = require( './group.js') 
+const Group = require( '../clases/group.js') 
 
 
 class TrailCode

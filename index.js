@@ -1,7 +1,7 @@
 
 //require( './core-tester/checker.js') 
 
-const TrailCode = require('./core-tester/clases/trailcode.js') 
+const TrailCode = require('./core-tester/singletons/trailcode.js') 
 const path = require('path')
 
 
