@@ -130,7 +130,7 @@ class Checker
      * @param {*} response 
      * @param {*} expected 
      */
-    simpleChecker(context,resolve, reject, response, expected)
+    static simpleChecker(context,resolve, reject, response, expected)
     {
         context._resolveMark()
         context.$result = 'SUCCESS'

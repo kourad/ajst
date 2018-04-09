@@ -125,7 +125,10 @@ module.exports = class Test
      */
     print()
     {
-        console.log(`${this.name}: [${this._tests[0].result}] (${this._tests[0].duration}ms) [${this._tests[0].error !== null ? this._tests[0].error.name : ''}]`)
+        if(this._tests[0].result === 'SUCCESS')
+        console.log(`${this.name}: [\x1b[32m${this._tests[0].result}\x1b[0m] (${this._tests[0].duration}ms) [${this._tests[0].error !== null ? this._tests[0].error.name : ''}]`)
+        else
+        console.log(`${this.name}: [\x1b[31m${this._tests[0].result}\x1b[0m] (${this._tests[0].duration}ms) [${this._tests[0].error !== null ? this._tests[0].error.name : ''}]`)
     }
 
     /**
@@ -141,13 +144,21 @@ module.exports = class Test
      */
     async execute()
     {
-        for( let i = 1; i <= this.repeats; i++)
-            if( !this._async  )
-                this._executeSync(i)
-            else
-                await this._executeAsync()
+        try
+        {
+            for( let i = 1; i <= this.repeats; i++)
+                if( !this._async  )
+                    this._executeSync(i)
+                else
+                    await this._executeAsync()
+    
+            this.print()
 
-        this.print()
+        }catch(e)
+        {
+            // test erroneo
+            console.log(e)
+        }
     }
 
 
@@ -221,6 +232,7 @@ module.exports = class Test
             // metodo done -> resolve, reject
             // hacer que done encapsule todos los metodos de assert
             let done = Checker.simpleChecker.bind(this,this, resolve, reject)
+            done.prueba = () => {} 
             
             this._callback(done)
 
