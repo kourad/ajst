@@ -12,12 +12,12 @@ module.exports = class Group
         this[name] = new Category(name)
     }
 
-    execute()
+    async execute()
     {
         for( let i in this )
         {
             if( i.startsWith( '$$' ) ) continue
-            this[i].execute()
+            await this[i].execute()
         }
     }
 }

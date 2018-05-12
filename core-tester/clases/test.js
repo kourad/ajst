@@ -150,7 +150,7 @@ module.exports = class Test
                 if( !this._async  )
                     this._executeSync(i)
                 else
-                    await this._executeAsync()
+                    await this._executeAsync(i)
     
             this.print()
 
@@ -221,21 +221,40 @@ module.exports = class Test
      * @return {Promise}
      * @since 0.1.0
      */
-    _executeAsync()
+    _executeAsync(i)
     {
         return new Promise((resolve, reject)=>
         {
-            performance.mark(this.name+'_start');
-
             // llamar al callback Asincrono
-
+            
             // metodo done -> resolve, reject
             // hacer que done encapsule todos los metodos de assert
-            let done = Checker.simpleChecker.bind(this,this, resolve, reject)
-            done.prueba = () => {} 
+            //let done = Checker.simpleChecker.bind(this,this, resolve, reject)
+            //done.prueba = () => {} 
+            let done = Checker.okAsync.bind(this, assert, i, resolve, reject)
+            done.ok = Checker.okAsync.bind(this, assert, i, resolve, reject)
+            
+            performance.mark(this.name+'_start');
             
             this._callback(done)
+            // timeout???
+            setTimeout(() => {
 
+                let error = {
+
+                }
+
+                let data = {
+                    result: "TIMEOUT",
+                    duration: this._resolveMark(),
+                    retry: i,
+                    error: new resultError(error),
+                }
+
+                this._tests.push( new resultEntry(data) )
+
+                resolve()
+            }, 5000 )
         })
     }
 

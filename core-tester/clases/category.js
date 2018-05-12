@@ -12,12 +12,12 @@ module.exports = class Category
         this[name] = new Test(name, callback, capture)
     }
 
-    execute()
+    async execute()
     {
         for( let i in this )
         {
             if( i.startsWith('$$') ) continue;
-            this[i].execute()
+            await this[i].execute()
         }
     }
 }

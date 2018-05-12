@@ -1,4 +1,6 @@
 const AJV = require('ajv')
+const resultEntry = require('../interfaces/resultEntry.js');
+const resultError = require('../interfaces/resultError.js');
 
 /**
  * Analizador de resultados
@@ -137,6 +139,29 @@ class Checker
         resolve()
     }
     
+    static okAsync(assert, i, resolve, reject, value, message)
+    {
+        console.log('este estaria cancelado?????')
+        let data = { retry: i }
+        try
+        {
+            
+            assert.ok(value, message)
+            data.result = 'SUCCESS'
+        }
+        catch(e)
+        {
+            if( e.code === 'ERR_ASSERTION' )
+                data.result = 'FAIL'
+            else
+                data.result = 'ERROR'
+            
+            data.error = new resultError(e)
+        }
+        data.duration = this._resolveMark();
+        this._tests.push( new resultEntry(data) );
+        resolve();
+    }
 
 }
 Checker.ajv = new AJV();

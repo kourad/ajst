@@ -100,12 +100,13 @@ class TrailCode
     }
 
 
-    execute()
+    async execute()
     {
         for( let i in this._tests )
         {
-            this._tests[i].execute()
+            await this._tests[i].execute()
         }
+        process.exit()
     }
 
 
